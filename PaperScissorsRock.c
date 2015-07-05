@@ -12,19 +12,19 @@ char* compare(char* choice1, char* choice2) {
         } else {
             return "paper wins!";
         }
-//    } else if (choice1.equals("paper")) {
-//        if (choice2.equals("rock")) {
-//            return "paper wins!";
-//        }
-//        else {
-//            return "scissors wins!";
-//        }
-//    } else if (choice1.equals("scissors")) {
-//        if (choice2.equals("rock")) {
-//            return "rock wins!";
-//        } else {
-//            return "scissors wins!";
-//        }
+    } else if (strcmp(choice1,"paper") == 0) {
+        if (strcmp(choice2,"rock") == 0) {
+            return "paper wins!";
+        }
+        else {
+            return "scissors wins!";
+        }
+    } else if (strcmp(choice1,"scissors") == 0) {
+        if (strcmp(choice2,"rock") == 0) {
+            return "rock wins!";
+        } else {
+            return "scissors wins!";
+        }
     } else {
         char* result;
         strcpy(result, "Invalid choice '");
