@@ -3,6 +3,10 @@
 #include <time.h>
 #include <stdlib.h>
 
+char* compare(char* userChoice, char* computerChoice) {
+  return "TODO";
+}
+
 int main(int argc, char **argv) {
   printf("Do you choose rock, paper or scissors?\n");
   char *line = NULL;
@@ -30,5 +34,8 @@ int main(int argc, char **argv) {
 
   printf("User    : %s\n", userChoice);
   printf("Computer: %s\n", computerChoice);
+
+  char* result = compare(userChoice, computerChoice);
+  printf("%s\n", result);
   return 0;
 }
