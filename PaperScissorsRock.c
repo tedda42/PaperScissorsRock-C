@@ -3,8 +3,35 @@
 #include <time.h>
 #include <stdlib.h>
 
-char* compare(char* userChoice, char* computerChoice) {
-  return "TODO";
+char* compare(char* choice1, char* choice2) {
+    if (strcmp(choice1,choice2) == 0) {
+        return "The result is a tie!";
+//    } else if (choice1.equals("rock")) {
+//        if (choice2.equals("scissors")) {
+//            return "rock wins!";
+//        } else {
+//            return "paper wins!";
+//        }
+//    } else if (choice1.equals("paper")) {
+//        if (choice2.equals("rock")) {
+//            return "paper wins!";
+//        }
+//        else {
+//            return "scissors wins!";
+//        }
+//    } else if (choice1.equals("scissors")) {
+//        if (choice2.equals("rock")) {
+//            return "rock wins!";
+//        } else {
+//            return "scissors wins!";
+//        }
+    } else {
+        char* result;
+        strcpy(result, "Invalid choice '");
+        strcat(result, choice1);
+        strcat(result, "'");
+        return result;
+    }
 }
 
 int main(int argc, char **argv) {
