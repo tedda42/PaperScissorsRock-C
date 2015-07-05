@@ -6,12 +6,12 @@
 char* compare(char* choice1, char* choice2) {
     if (strcmp(choice1,choice2) == 0) {
         return "The result is a tie!";
-//    } else if (choice1.equals("rock")) {
-//        if (choice2.equals("scissors")) {
-//            return "rock wins!";
-//        } else {
-//            return "paper wins!";
-//        }
+    } else if (strcmp(choice1,"rock") == 0) {
+        if (strcmp(choice2,"scissors") == 0) {
+            return "rock wins!";
+        } else {
+            return "paper wins!";
+        }
 //    } else if (choice1.equals("paper")) {
 //        if (choice2.equals("rock")) {
 //            return "paper wins!";
