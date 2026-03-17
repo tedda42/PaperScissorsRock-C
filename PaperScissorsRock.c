@@ -3,66 +3,42 @@
 #include <time.h>
 #include <stdlib.h>
 
-char* compare(char* choice1, char* choice2) {
-    if (strcmp(choice1,choice2) == 0) {
-        return "The result is a tie!";
-    } else if (strcmp(choice1,"rock") == 0) {
-        if (strcmp(choice2,"scissors") == 0) {
-            return "rock wins!";
-        } else {
-            return "paper wins!";
-        }
-    } else if (strcmp(choice1,"paper") == 0) {
-        if (strcmp(choice2,"rock") == 0) {
-            return "paper wins!";
-        }
-        else {
-            return "scissors wins!";
-        }
-    } else if (strcmp(choice1,"scissors") == 0) {
-        if (strcmp(choice2,"rock") == 0) {
-            return "rock wins!";
-        } else {
-            return "scissors wins!";
-        }
-    } else {
-        char* result;
-        strcpy(result, "Invalid choice '");
-        strcat(result, choice1);
-        strcat(result, "'");
-        return result;
-    }
+const char* compare(const char* c1, const char* c2) {
+    if (strcmp(c1, c2) == 0) return "The result is a tie!";
+    if (strcmp(c1, "rock") == 0)     return (strcmp(c2, "scissors") == 0) ? "rock wins!"     : "paper wins!";
+    if (strcmp(c1, "paper") == 0)    return (strcmp(c2, "rock") == 0)     ? "paper wins!"    : "scissors wins!";
+    if (strcmp(c1, "scissors") == 0) return (strcmp(c2, "paper") == 0)    ? "scissors wins!" : "rock wins!";
+    return "Invalid choice!";
 }
 
-int main(int argc, char **argv) {
-  printf("Do you choose rock, paper or scissors?\n");
-  char *line = NULL;
-  size_t size;
-  if (getline(&line, &size, stdin) == -1) {
-      printf("You didn't enter a value\n");
-      return 1;
-  }
-  char userChoice[strlen(line)-1];
-  strncpy(userChoice, line, strlen(line)-1);
+int main(void) {
+    printf("Do you choose rock, paper or scissors?\n");
 
-  srand(time(NULL));
-  float computerChoiceRand = rand()/(float)RAND_MAX;
+    char *line = NULL;
+    size_t cap = 0;
 
-  char* computerChoice;
+    if (getline(&line, &cap, stdin) == -1) {
+        printf("You didn't enter a value\n");
+        return 1;
+    }
 
-  if (computerChoiceRand < 0.34) {
-      computerChoice = "rock";
-  } else if (computerChoiceRand <= 0.67) {
-      computerChoice = "paper";
-  } else {
-      computerChoice = "scissors";
-  }
+    // strip trailing newline
+    size_t len = strlen(line);
+    if (len && line[len - 1] == '\n') line[len - 1] = '\0';
 
+    const char *userChoice = line;
 
-  printf("User    : %s\n", userChoice);
-  printf("Computer: %s\n", computerChoice);
+    srand((unsigned)time(NULL));
+    float r = rand() / (float)RAND_MAX;
 
-  char* result = compare(userChoice, computerChoice);
-  printf("%s\n", result);
-  return 0;
+    const char *computerChoice =
+        (r < 0.34f) ? "rock" :
+        (r <= 0.67f) ? "paper" : "scissors";
+
+    printf("User    : %s\n", userChoice);
+    printf("Computer: %s\n", computerChoice);
+    printf("%s\n", compare(userChoice, computerChoice));
+
+    free(line);
+    return 0;
 }
